@@ -21,14 +21,14 @@ const Landing: React.FC = () => {
         <img src={landingImg} alt="LogoLanding" className="hero-image" />
 
         <div className="buttons-container">
-          <Link to="kkkkk" className="study">
+          <Link to="study" className="study">
             <img src={studyIcon} alt="Estudar" />
             Estudar
           </Link>
 
-          <Link to="kkkkk" className="give-classes">
+          <Link to="give-classes" className="give-classes">
             <img src={giveClassesIcon} alt="Dar aulas" />
-            Dar aulaa
+            Dar aulas
           </Link>
         </div>
 

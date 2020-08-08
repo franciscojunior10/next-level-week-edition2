@@ -29,6 +29,7 @@
       "prettier"
   ],
   "rules": {
+    "jsx-a11y/label-has-associated-control":"off",
     "prettier/prettier": "error",
     "@typescript-eslint/ban-types": "off",
     "react/jsx-props-no-spreading": "off",

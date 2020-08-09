@@ -30,6 +30,7 @@
   ],
   "rules": {
     "jsx-a11y/label-has-associated-control":"off",
+    "no-alert": "off",
     "prettier/prettier": "error",
     "@typescript-eslint/ban-types": "off",
     "react/jsx-props-no-spreading": "off",

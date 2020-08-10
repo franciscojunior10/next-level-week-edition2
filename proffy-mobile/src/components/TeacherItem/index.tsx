@@ -8,6 +8,8 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
+import api from '../../services/api';
+
 import heartOutineFrom from '../../assets/images/icons/heart-outline.png';
 import unFavoriteIcon from '../../assets/images/icons/unfavorite.png';
 import whatsappIcon from '../../assets/images/icons/whatsapp.png';
@@ -32,7 +34,11 @@ interface TeacherItemPrpos {
 const TeacherItem: React.FC<TeacherItemPrpos> = ({ teacher, favorited }) => {
   const [isFavorited, setIsFavorited] = useState(favorited);
   
-  const handleLinkWhatsapp = useCallback(() => {
+  const handleLinkWhatsapp = useCallback( async() => {
+    await api.post('connections', {
+      user_id: teacher.id,
+    });
+
     Linking.openURL(`whatsapp://send?phone=55${teacher.whatsapp}`);
   }, []);
   

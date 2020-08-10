@@ -1,12 +1,13 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
-
 import {
   View, 
   Text,
   Image,
 } from 'react-native';
+
+import api from '../../services/api';
 
 import landingImg from '../../assets/images/landing.png';
 import studyIcon from '../../assets/images/icons/study.png';
@@ -15,8 +16,23 @@ import heartIcon from '../../assets/images/icons/heart.png';
 
 import styles from './styles';
 
+interface DataProps {
+  total: number;
+}
+
 const Landing: React.FC = () => {
   const { navigate } = useNavigation();
+
+  const [totalConnections, setTotalConnections] = useState(0);
+
+  useEffect(() => {
+    const loadTotalConnections = async (): Promise<void> => {
+      const response = await api.get<DataProps>('/connections');
+      setTotalConnections(response.data.total);
+    };
+
+    loadTotalConnections();
+  }, []);
 
   const handleNavigateToGiveClasses = useCallback(() => {
     navigate('GiveClasses');
@@ -58,7 +74,7 @@ const Landing: React.FC = () => {
       </View>
 
       <Text style={styles.totalConnections}>
-        Total de 285 conexões realizadas {' '}
+        Total de {totalConnections} conexões realizadas {' '}
         <Image source={heartIcon} />
       </Text>
     </View>
